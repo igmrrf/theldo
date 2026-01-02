@@ -21,7 +21,8 @@ ENV PATH="/.cargo/bin:$PATH"
 RUN dx bundle --web --release
 
 FROM chef AS runtime
-COPY --from=builder /app/target/dx/theldo/release/web/ /usr/local/app
+COPY --from=builder /app/target/dx/theldo/release/web /usr/local/app
+
 
 # set our port and make sure to listen for all connections
 ENV PORT=8080
@@ -31,4 +32,4 @@ ENV IP=0.0.0.0
 EXPOSE 8080
 
 WORKDIR /usr/local/app
-ENTRYPOINT [ "/usr/local/app/server" ]
+ENTRYPOINT [ "/usr/local/app/theldo" ]
