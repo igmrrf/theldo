@@ -1,3 +1,5 @@
+#[cfg(not(feature = "server"))]
+use dioxus::fullstack::set_server_url;
 use dioxus::prelude::*;
 
 mod backend;
@@ -24,6 +26,9 @@ enum Route {
 }
 
 fn main() {
+    #[cfg(not(feature = "server"))]
+    set_server_url("https://theldo.fly.dev");
+
     dioxus::launch(App);
 }
 

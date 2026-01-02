@@ -43,7 +43,7 @@ pub async fn delete_dog(id: i64) -> Result<()> {
     Ok(())
 }
 
-#[server]
+#[server(endpoint = "list_dogs")]
 pub async fn list_dogs() -> Result<Vec<(i64, String)>, ServerFnError> {
     let dogs = DB.with(|f| {
         f.prepare("SELECT id, url FROM dogs ORDER BY id DESC LIMIT 10")
